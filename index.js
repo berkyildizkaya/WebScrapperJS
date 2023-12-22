@@ -17,13 +17,12 @@ const getAmazonProduct = async () => {
     const priceText = priceElement.text().replace(",", "");
     const sellerElement = $("span.a-size-small.tabular-buybox-text-message").eq(1);
     const sellerText = sellerElement.text();
-  
     let SendMessage = "";
     SendMessage =
       priceText === "" || sellerText === ""
         ? "Product does not found or seller does not found"
         : `Product Price :${priceText} Product Seller : ${sellerText}`;
-    if (parseInt(priceText.replace('.','')) < parseInt(process.env.CONTROL_PRICE)){
+    if (parseInt(priceText.replace('.','')) < parseInt(process.env.CONTROL_PRICE) && sellerText !=""){
       setOptions(SendMessage);
     }
   } catch (error) {
